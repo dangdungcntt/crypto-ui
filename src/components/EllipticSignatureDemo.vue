@@ -266,19 +266,19 @@ const verify = async () => {
           </div>
 
           <Collapsible v-model:open="collapse.generateKey" class="space-y-2">
-            <div class="flex justify-between">
-              <div class="flex space-x-2">
-                <Button @click="generatePrivateKey" variant="default" :disabled="loading.generateKey">
+            <div class="flex justify-between gap-2 flex-wrap">
+              <div class="flex space-x-2 w-full sm:w-auto">
+                <Button class="flex-1" @click="generatePrivateKey" variant="default" :disabled="loading.generateKey">
                   <Loader2Icon v-if="loading.generateKey" class="size-4 animate-spin"/>
                   Generate Key
                 </Button>
-                <Button v-if="privateKey.d" variant="outline" @click="clearPrivateKey">
+                <Button class="flex-1" v-if="privateKey.d" variant="outline" @click="clearPrivateKey">
                   <EraserIcon/>
                   Clear
                 </Button>
               </div>
               <CollapsibleTrigger v-if="privateKey.__trace" as-child>
-                <CollapsibeButton :is-collapsed="collapse.generateKey"/>
+                <CollapsibeButton class="w-full sm:w-auto" :is-collapsed="collapse.generateKey"/>
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent v-if="privateKey.__trace">
@@ -300,19 +300,19 @@ const verify = async () => {
             </div>
 
             <Collapsible v-model:open="collapse.sign" class="space-y-2">
-              <div class="flex justify-between">
-                <div class="flex space-x-2">
-                  <Button @click="sign" variant="default" :disabled="loading.sign || !privateKey.d || !message">
+              <div class="flex justify-between gap-2 flex-wrap ">
+                <div class="flex space-x-2 w-full sm:w-auto">
+                  <Button class="flex-1" @click="sign" variant="default" :disabled="loading.sign || !privateKey.d || !message">
                     <Loader2Icon v-if="loading.sign" class="size-4 animate-spin"/>
                     Sign
                   </Button>
-                  <Button v-if="signature.r || signature.s" variant="outline" @click="clearSignature">
+                  <Button class="flex-1" v-if="signature.r || signature.s" variant="outline" @click="clearSignature">
                     <EraserIcon/>
                     Clear
                   </Button>
                 </div>
                 <CollapsibleTrigger v-if="signature.__trace" as-child>
-                  <CollapsibeButton :is-collapsed="collapse.sign"/>
+                  <CollapsibeButton class="w-full sm:w-auto" :is-collapsed="collapse.sign"/>
                 </CollapsibleTrigger>
               </div>
               <CollapsibleContent v-if="signature.__trace">
@@ -340,25 +340,25 @@ const verify = async () => {
             </div>
 
             <Collapsible v-model:open="collapse.verify" class="space-y-2">
-              <div class="flex justify-between">
-                <div class="flex space-x-2 items-center">
-                  <Button @click="verify" variant="default"
+              <div class="flex justify-between gap-2 flex-wrap">
+                <div class="flex space-x-2 items-center flex-wrap gap-2 w-full sm:w-auto">
+                  <Button @click="verify" class="w-full sm:w-auto" variant="default"
                           :disabled="loading.verify || !privateKey.publicKey.q.x || !privateKey.publicKey.q.x || !signature.r || !signature.s || !message">
                     Verify
                   </Button>
                   <template v-if="verifyStatus.__trace">
-                    <div v-if="verifyStatus.isValid" class="text-green-500 flex">
+                    <div v-if="verifyStatus.isValid" class="text-green-500  w-full flex min-w-fit justify-center">
                       <CheckCircle2Icon class="mr-2"/>
                       Valid signature
                     </div>
-                    <div v-else class="text-red-600 flex">
+                    <div v-else class="text-red-600 text-center w-full flex min-w-fit justify-center">
                       <XCircleIcon class="mr-2"/>
                       Invalid signature
                     </div>
                   </template>
                 </div>
                 <CollapsibleTrigger v-if="verifyStatus.__trace" as-child>
-                  <CollapsibeButton :is-collapsed="collapse.verify"/>
+                  <CollapsibeButton class="w-full sm:w-auto" :is-collapsed="collapse.verify"/>
                 </CollapsibleTrigger>
               </div>
               <CollapsibleContent v-if="verifyStatus.__trace">
