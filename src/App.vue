@@ -14,7 +14,7 @@ const isECDSA = computed(() => params.algo !== 'ecgdsa');
       <Button @click="params.algo = ''" class="w-full" :variant="isECDSA ? 'default' : 'outline'">ECDSA</Button>
       <Button @click="params.algo = 'ecgdsa'" class="w-full" :variant="!isECDSA ? 'default' : 'outline'">ECGDSA</Button>
     </div>
-    <EllipticSignatureDemo v-if="isECDSA" type="ecgdsa"/>
-    <EllipticSignatureDemo v-else type="ecdsa"/>
+    <EllipticSignatureDemo v-if="isECDSA" type="ecdsa"/>
+    <EllipticSignatureDemo v-else type="ecgdsa"/>
   </div>
 </template>
