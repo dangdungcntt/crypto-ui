@@ -341,17 +341,18 @@ const verify = async () => {
 
             <Collapsible v-model:open="collapse.verify" class="space-y-2">
               <div class="flex justify-between gap-2 flex-wrap">
-                <div class="flex space-x-2 items-center flex-wrap gap-2 w-full sm:w-auto">
+                <div class="flex space-x-2 items-center flex-wrap gap-2 w-full sm:w-auto flex-1">
                   <Button @click="verify" class="w-full sm:w-auto" variant="default"
                           :disabled="loading.verify || !privateKey.publicKey.q.x || !privateKey.publicKey.q.x || !signature.r || !signature.s || !message">
+                    <Loader2Icon v-if="loading.verify" class="size-4 animate-spin"/>
                     Verify
                   </Button>
                   <template v-if="verifyStatus.__trace">
-                    <div v-if="verifyStatus.isValid" class="text-green-500  w-full flex min-w-fit justify-center">
+                    <div v-if="verifyStatus.isValid" class="text-green-500  w-full sm:w-auto font-bold flex min-w-fit justify-center">
                       <CheckCircle2Icon class="mr-2"/>
                       Valid signature
                     </div>
-                    <div v-else class="text-red-600 text-center w-full flex min-w-fit justify-center">
+                    <div v-else class="text-red-600 text-center w-full sm:w-auto font-bold flex min-w-fit justify-center">
                       <XCircleIcon class="mr-2"/>
                       Invalid signature
                     </div>
