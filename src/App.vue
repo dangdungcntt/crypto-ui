@@ -10,7 +10,7 @@ const isECDSA = computed(() => params.algo !== 'ecgdsa');
 </script>
 <template>
   <div class="min-h-screen bg-background p-4 md:p8 space-y-2">
-    <div class="flex gap-2">
+    <div class="flex gap-2 max-w-6xl mx-auto">
       <Button @click="params.algo = ''" class="w-full" :variant="isECDSA ? 'default' : 'outline'">ECDSA</Button>
       <Button @click="params.algo = 'ecgdsa'" class="w-full" :variant="!isECDSA ? 'default' : 'outline'">ECGDSA</Button>
     </div>
